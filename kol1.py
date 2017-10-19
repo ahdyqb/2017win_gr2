@@ -17,9 +17,9 @@
 #Good Luck
 
 
-#will generate random angles from standard normal distribution around 30.0 deg
-#		with the st.dev of 10.0
-#fixes will be applied analogously, around the current value of fix
+#will generate random angles from normal distribution around 0.0
+#	with st.dev of 30 deg.
+#fix will be applied analogously, with the mean at -angle and st.dev of 5.0
 
 import random
 from time import sleep
@@ -30,14 +30,17 @@ angle = 0.0
 i = 1
 
 while True:
-	print("Starting step " + str(i) + "\nInitial angle: " + "{:2.3f}".format(angle) + " deg.")
-	tilt = random.gauss(30.0,10.0)
+	print("Starting step {0:d}\nInitial angle: {1:2.3f} deg.".format(i,angle))
+	tilt = random.gauss(0.0,30.0)
 	angle += tilt
-	print( "Tilting by " + "{:2.3f}".format(tilt) + " deg.\nCurrent angle: " + "{:2.3f}".format(angle) )
+	print( "Tilting by {0:2.3f} deg.\nCurrent angle: {1:2.3f}".format(tilt,angle) )
 	fix = random.gauss(-angle,5.0)	#centered around minus current angle
 									#so it already gives a compensating value
-	print( "Applying fixing tilt of " + "{:2.3f}".format(fix) + " deg." )
+	print( "Applying fixing tilt of {:2.3f} deg.".format(fix) )
 	angle += fix
-	print( "Angle at the end of the step: " + "{:2.3f}".format(angle) + "\n" )
+	print( "Angle at the end of the step: {:2.3f}\n".format(angle) )
 	i += 1
 	sleep(2)
+
+#Jakub Ahaddad
+#github username ahdyqb
